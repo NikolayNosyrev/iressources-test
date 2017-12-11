@@ -10,6 +10,12 @@
 </head>
 <body>
 <div class="wrapper">
+    {% for flashMessage in app.session.flashbag.get('message') %}
+        <div class="js-alert-success bg-success alert-msg" style="color: green;"><b>{{ flashMessage|raw }}</b></div>
+    {% endfor %}
+    {% for flashMessage in app.session.flashbag.get('error') %}
+        <div class="js-alert-success bg-success alert-msg" style="color: red;"><b>{{ flashMessage|raw }}</b></div>
+    {% endfor %}
     {% block content %}{% endblock %}
 </div>
 {% block js %}{% endblock %}

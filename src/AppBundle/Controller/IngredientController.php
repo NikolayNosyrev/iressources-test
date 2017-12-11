@@ -91,7 +91,7 @@ class IngredientController extends Controller
         }
 
         if (!$ingredient->getRecipes()->isEmpty()) {
-            $this->addFlash('message', 'Ингредиент не может быть удалён. Он используется в рецептах.');
+            $this->addFlash('error', 'Ингредиент не может быть удалён. Он используется в рецептах.');
 
             return $this->redirectToRoute('ingredient_list');
         }
