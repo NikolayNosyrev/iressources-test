@@ -47,6 +47,7 @@ class RecipeForm extends AbstractType
                         'choice_label' => 'name',
                     ],
                     'allow_add'     => true,
+                    'allow_delete'  => true,
                     'required'      => false,
                     'constraints'   => new NotBlank(),
                 ]

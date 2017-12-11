@@ -25,7 +25,7 @@
             {% for ingredient in form.ingredients %}
                 <li>
                     {{ form_errors(ingredient) }}
-                    {{ form_widget(ingredient) }}
+                    {{ form_widget(ingredient) }} <a href="#" class="remove-ingredient">X</a>
                 </li>
             {% endfor %}
         </ul>
@@ -58,6 +58,10 @@
 
                 var newLi = $('<li></li>').html(newWidget);
                 newLi.appendTo(list);
+            });
+
+            $('#ingredients-list').on('click', '.remove-ingredient', function(){
+                $(this).parent('li').remove();
             });
         })
     </script>
