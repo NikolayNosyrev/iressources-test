@@ -23,7 +23,7 @@ class IngredientForm extends AbstractType
                     'required'    => false,
                     'constraints' => [
                         new NotBlank(['message' => 'Поле не может быть пустым']),
-                        new Length(['max' => 64, 'maxMessage' => 'Значение не может быть больше 64 символов'])
+                        new Length(['max' => 64, 'maxMessage' => 'Значение не может быть больше 64 символов']),
                     ],
                 ]
             )
