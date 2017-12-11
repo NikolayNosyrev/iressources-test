@@ -6,3 +6,7 @@ services:
         arguments:
             - '@doctrine.orm.entity_manager'
 
+    model.ingredient:
+        class: AppBundle\Model\IngredientModel
+        arguments:
+            - '@doctrine.orm.entity_manager'

@@ -28,7 +28,7 @@ class RecipeController extends Controller
     }
 
     /**
-     * @Route("/view/{id}", name="recipe_view")
+     * @Route("/recipe/view/{id}", name="recipe_view")
      */
     public function viewAction($id)
     {
@@ -47,7 +47,7 @@ class RecipeController extends Controller
     }
 
     /**
-     * @Route("/create", name="recipe_create")
+     * @Route("/recipe/create", name="recipe_create")
      */
     public function createAction(Request $request)
     {
@@ -71,7 +71,7 @@ class RecipeController extends Controller
     }
 
     /**
-     * @Route("/edit/{id}", name="recipe_edit")
+     * @Route("/recipe/edit/{id}", name="recipe_edit")
      */
     public function editAction($id, Request $request)
     {
@@ -101,7 +101,7 @@ class RecipeController extends Controller
     }
 
     /**
-     * @Route("/delete/{id}", name="recipe_delete")
+     * @Route("/recipe/delete/{id}", name="recipe_delete")
      */
     public function deleteAction($id)
     {

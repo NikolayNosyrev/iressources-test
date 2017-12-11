@@ -1,0 +1,19 @@
+{% extends "AppBundle::layout.html.twig" %}
+{% block content %}
+    <h1>Создание рецепта</h1>
+
+    <a href="{{ path('ingredient_list') }}">Назад к списку</a>
+
+    {{ form_start(form) }}
+
+    <div>
+        {{ form_label(form.name, 'Название ингредиента') }}
+        {{ form_widget(form.name) }}
+        {{ form_errors(form.name) }}
+    </div>
+    <div>
+        {{ form_widget(form.submit, {'attr': {'class': 'btn btn-primary btn-large form-control' }, 'label': 'Сохранить'}) }}
+    </div>
+    {{ form_end(form) }}
+
+{% endblock %}
