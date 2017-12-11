@@ -15,7 +15,7 @@ class RecipeRepository extends EntityRepository
     {
         return $this->createQueryBuilder('r')
             ->addSelect('i')
-            ->join('r.ingredients', 'i')
+            ->leftJoin('r.ingredients', 'i')
             ->where('r.name LIKE :search')
             ->setParameter('search', '%'.$search.'%')
             ->getQuery()
