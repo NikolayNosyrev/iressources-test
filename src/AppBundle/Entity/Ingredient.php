@@ -30,6 +30,11 @@ class Ingredient
     private $name;
 
     /**
+     * @ORM\ManyToMany(targetEntity="\AppBundle\Entity\Recipe", mappedBy="ingredients")
+     */
+    protected $recipes;
+
+    /**
      * Get id
      *
      * @return integer
@@ -61,5 +66,46 @@ class Ingredient
     public function getName()
     {
         return $this->name;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->recipes = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add recipe
+     *
+     * @param \AppBundle\Entity\Recipe $recipe
+     *
+     * @return Ingredient
+     */
+    public function addRecipe(\AppBundle\Entity\Recipe $recipe)
+    {
+        $this->recipes[] = $recipe;
+
+        return $this;
+    }
+
+    /**
+     * Remove recipe
+     *
+     * @param \AppBundle\Entity\Recipe $recipe
+     */
+    public function removeRecipe(\AppBundle\Entity\Recipe $recipe)
+    {
+        $this->recipes->removeElement($recipe);
+    }
+
+    /**
+     * Get recipes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getRecipes()
+    {
+        return $this->recipes;
     }
 }

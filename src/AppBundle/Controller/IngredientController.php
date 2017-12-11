@@ -90,6 +90,12 @@ class IngredientController extends Controller
             throw new NotFoundHttpException('Ingredient not found.');
         }
 
+        if (!$ingredient->getRecipes()->isEmpty()) {
+            $this->addFlash('message', 'Ингредиент не может быть удалён. Он используется в рецептах.');
+
+            return $this->redirectToRoute('ingredient_list');
+        }
+
         $this->get('model.ingredient')->delete($ingredient);
 
         $this->addFlash('message', 'Ингредиент успешно удалён');
