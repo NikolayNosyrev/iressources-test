@@ -9,11 +9,14 @@
         <a class="btn btn-green pull-right" href="{{ path('recipe_create') }}">Новый рецепт</a>
     </h2>
 
-    <div class="search col-xs-4">
+    <div class="search col-xs-4" style="margin-left: -15px;">
         <input id="js-search" class="form-control" type="text" placeholder="cтрока поиска" value="" autofocus="autofocus">
     </div>
-    <div class="search col-xs-4">
+    <div class="search col-xs-1">
         <button type="button" class="btn btn-default">Поиск</button>
+    </div>
+    <div class="search col-xs-4" style="margin-top: 6px;">
+        <a href="{{ path('recipe_list') }}">Показать всё</a>
     </div>
 
     <table class="table table-hover">
