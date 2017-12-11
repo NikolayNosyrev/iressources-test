@@ -67,6 +67,7 @@ class Ingredient
     {
         return $this->name;
     }
+
     /**
      * Constructor
      */

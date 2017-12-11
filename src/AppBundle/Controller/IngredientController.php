@@ -44,7 +44,7 @@ class IngredientController extends Controller
         return $this->render(
             'AppBundle:Ingredient:create.html.twig',
             [
-                'form' => $form->createView()
+                'form' => $form->createView(),
             ]
         );
     }
@@ -74,7 +74,7 @@ class IngredientController extends Controller
         return $this->render(
             'AppBundle:Ingredient:create.html.twig',
             [
-                'form' => $form->createView()
+                'form' => $form->createView(),
             ]
         );
     }

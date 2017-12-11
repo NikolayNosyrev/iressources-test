@@ -20,7 +20,7 @@ class IngredientForm extends AbstractType
                 TextType::class,
                 [
                     'required'    => false,
-                    'constraints' => new NotBlank()
+                    'constraints' => new NotBlank(),
                 ]
             )
             ->add(
@@ -31,9 +31,11 @@ class IngredientForm extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => Ingredient::class,
-        ));
+        $resolver->setDefaults(
+            [
+                'data_class' => Ingredient::class,
+            ]
+        );
     }
 
     public function getName()

@@ -33,7 +33,7 @@
                         <span>{{ ingredient.name }}</span>{{ loop.last ? '' : ';' }}
                     {% endfor %}
                 </td>
-                <td><input type="checkbox" /></td>
+                <td><input type="checkbox"/></td>
                 <td>
                     <a href="{{ path('recipe_view', {id: recipe.id }) }}">Просмотреть</a>
                     <a href="{{ path('recipe_edit', {id: recipe.id }) }}">Редактировать</a>
@@ -69,10 +69,10 @@
                 }
             });
 
-            $('table input[type=checkbox]').change(function(){
+            $('table input[type=checkbox]').change(function () {
                 var ingredients = [];
-                $('table input[type=checkbox]:checked').each(function(){
-                    $(this).closest('tr').find('td.ingredients span').each(function(){
+                $('table input[type=checkbox]:checked').each(function () {
+                    $(this).closest('tr').find('td.ingredients span').each(function () {
                         var ingredient = $(this).html();
                         if (ingredients.indexOf(ingredient) === -1) {
                             ingredients.push(ingredient);
@@ -82,7 +82,7 @@
 
                 var total_ingredients = '';
 
-                ingredients.forEach(function(item) {
+                ingredients.forEach(function (item) {
                     total_ingredients += item + '; ';
                 });
 

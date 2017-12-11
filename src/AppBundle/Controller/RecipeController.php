@@ -41,7 +41,7 @@ class RecipeController extends Controller
         return $this->render(
             'AppBundle:Recipe:view.html.twig',
             [
-                'recipe' => $recipe
+                'recipe' => $recipe,
             ]
         );
     }
@@ -65,7 +65,7 @@ class RecipeController extends Controller
         return $this->render(
             'AppBundle:Recipe:create.html.twig',
             [
-                'form' => $form->createView()
+                'form' => $form->createView(),
             ]
         );
     }
@@ -95,7 +95,7 @@ class RecipeController extends Controller
         return $this->render(
             'AppBundle:Recipe:create.html.twig',
             [
-                'form' => $form->createView()
+                'form' => $form->createView(),
             ]
         );
     }
