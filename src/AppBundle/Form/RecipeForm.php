@@ -14,6 +14,7 @@ use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 class RecipeForm extends AbstractType
@@ -26,7 +27,10 @@ class RecipeForm extends AbstractType
                 TextType::class,
                 [
                     'required'    => false,
-                    'constraints' => new NotBlank(),
+                    'constraints' => [
+                        new NotBlank(['message' => 'Поле не может быть пустым']),
+                        new Length(['max' => 64, 'maxMessage' => 'Значение не может быть больше 64 символов'])
+                    ],
                 ]
             )
             ->add(
@@ -34,7 +38,10 @@ class RecipeForm extends AbstractType
                 TextareaType::class,
                 [
                     'required'    => false,
-                    'constraints' => new NotBlank(),
+                    'constraints' => [
+                        new NotBlank(['message' => 'Поле не может быть пустым']),
+                        new Length(['max' => 255, 'maxMessage' => 'Значение не может быть больше 255 символов'])
+                    ],
                 ]
             )
             ->add(
