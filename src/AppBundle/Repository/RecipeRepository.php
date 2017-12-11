@@ -14,6 +14,7 @@ class RecipeRepository extends EntityRepository
     public function findByString($search)
     {
         return $this->createQueryBuilder('r')
+            ->join('r.ingredients', 'i')
             ->where('r.name LIKE :search')
             ->setParameter('search', '%'.$search.'%')
             ->getQuery()
