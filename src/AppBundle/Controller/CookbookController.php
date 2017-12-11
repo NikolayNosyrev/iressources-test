@@ -30,7 +30,7 @@ class CookbookController extends Controller
     /**
      * @Route("/view/{id}", name="view")
      */
-    public function viewAction($id, Request $request)
+    public function viewAction($id)
     {
         $recipe = $this->get('model.recipe')->findOneById($id);
 
