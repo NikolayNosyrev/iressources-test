@@ -50,7 +50,6 @@ class RecipeForm extends AbstractType
                     'allow_delete'  => true,
                     'required'      => false,
                     'delete_empty'  => true,
-                    'constraints'   => new NotBlank(),
                 ]
             )
             ->add(
