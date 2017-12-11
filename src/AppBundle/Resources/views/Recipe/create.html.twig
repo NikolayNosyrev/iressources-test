@@ -1,4 +1,14 @@
 {% extends "AppBundle::layout.html.twig" %}
+
+{% macro widget_prototype(widget) %}
+    <li>
+        {{ form_errors(widget) }}
+        {{ form_widget(widget) }} <a href="#" class="remove-ingredient">X</a>
+    </li>
+{% endmacro %}
+
+{% import _self as forms %}
+
 {% block content %}
     <h1>Создание рецепта</h1>
 
@@ -21,12 +31,9 @@
 
     <div>
         Ингредиенты:
-        <ul id="ingredients-list" data-prototype="{{ form_widget(form.ingredients.vars.prototype)|e }}">
+        <ul id="ingredients-list" data-prototype="{{ forms.widget_prototype(form.ingredients.vars.prototype)|e }}">
             {% for ingredient in form.ingredients %}
-                <li>
-                    {{ form_errors(ingredient) }}
-                    {{ form_widget(ingredient) }} <a href="#" class="remove-ingredient">X</a>
-                </li>
+                {{ forms.widget_prototype(ingredient) }}
             {% endfor %}
         </ul>
         <a href="#" id="add-ingredient">Добавить ингредиент</a>
@@ -57,7 +64,7 @@
                 newWidget = newWidget.replace(/__name__/g, count);
                 count++;
 
-                var newLi = $('<li></li>').html(newWidget);
+                var newLi = $(newWidget);
                 newLi.appendTo(list);
             });
 
