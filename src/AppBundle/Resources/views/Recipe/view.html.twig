@@ -5,6 +5,7 @@
     <a href="{{ path('recipe_list') }}">Назад к списку</a><br>
 
     Название: {{ recipe.name }}<br>
-    Описание: {{ recipe.description }}
+    Описание: {{ recipe.description }}<br>
+    Ингредиенты: {% for ingredient in recipe.ingredients %}{{ ingredient.name }}; {% endfor %}
 
 {% endblock %}
