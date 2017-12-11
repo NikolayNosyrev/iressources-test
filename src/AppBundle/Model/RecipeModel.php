@@ -31,11 +31,13 @@ class RecipeModel
     }
 
     /**
+     * @param string $search
+     *
      * @return array|\AppBundle\Entity\Recipe[]
      */
-    public function findAll()
+    public function findByString($search)
     {
-        return $this->recipeRepo->findAll();
+        return $this->recipeRepo->findByString($search);
     }
 
     /**

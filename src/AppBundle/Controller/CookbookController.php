@@ -13,9 +13,11 @@ class CookbookController extends Controller
     /**
      * @Route("/", name="list")
      */
-    public function listAction()
+    public function listAction(Request $request)
     {
-        $recipes = $this->get('model.recipe')->findAll();
+        $search = $request->get('search');
+
+        $recipes = $this->get('model.recipe')->findByString($search);
 
         return $this->render(
             'AppBundle:Cookbook:list.html.twig',

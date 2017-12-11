@@ -1,8 +1,14 @@
 {% extends "AppBundle::layout.html.twig" %}
+
 {% block content %}
     <h1>Список рецептов</h1>
 
     <a href="{{ path('create') }}">Новый рецепт</a>
+
+    <div class="search">
+        <input id="js-search" type="text" placeholder="cтрока поиска" value="" autofocus="autofocus">
+        <button type="button" class="btn btn-default">Поиск</button>
+    </div>
 
     <table class="table table-bordered">
         <thead>
@@ -29,5 +35,26 @@
     </table>
 {% endblock %}
 
+{% block js %}
+    <script>
 
+        $(document).ready(function () {
+            var find = function () {
+                var search = $('#js-search').val();
 
+                location.href = window.location.pathname + '?' + 'search=' + search;
+            };
+
+            $('.search button').on('click', function () {
+                find();
+            });
+
+            $('#js-search').on('keypress', function (e) {
+                if (e.keyCode == 13) {
+                    find();
+                }
+            });
+        });
+
+    </script>
+{% endblock %}
