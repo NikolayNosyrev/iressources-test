@@ -6,17 +6,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <script src="{{ asset('assets/js/jquery-2.2.3.min.js') }}"></script>
 </head>
 <body>
 <div class="wrapper">
-    {% for flashMessage in app.session.flashbag.get('message') %}
-        <div class="js-alert-success bg-success alert-msg" style="color: green;"><b>{{ flashMessage|raw }}</b></div>
-    {% endfor %}
-    {% for flashMessage in app.session.flashbag.get('error') %}
-        <div class="js-alert-success bg-success alert-msg" style="color: red;"><b>{{ flashMessage|raw }}</b></div>
-    {% endfor %}
+    <div style="padding-left: 30px; padding-right: 30px; padding-bottom: 20px;">
+        {% for flashMessage in app.session.flashbag.get('message') %}
+            <div class="bg-success alert alert-dismissible fade in" role="alert">
+                <b>{{ flashMessage|raw }}</b>
+            </div>
+        {% endfor %}
+        {% for flashMessage in app.session.flashbag.get('error') %}
+            <div class="bg-danger alert alert-dismissible fade in" role="alert">
+                <b>{{ flashMessage|raw }}</b>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="container">
     {% block content %}{% endblock %}
+    </div>
 </div>
 {% block js %}{% endblock %}
 </body>

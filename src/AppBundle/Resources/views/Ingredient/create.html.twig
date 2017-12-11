@@ -1,18 +1,20 @@
 {% extends "AppBundle::layout.html.twig" %}
 {% block content %}
-    <h1>Создание ингредиента</h1>
+    <a href="{{ path('ingredient_list') }}" class="pull-right">Назад к списку</a>
+    <br>
 
-    <a href="{{ path('ingredient_list') }}">Назад к списку</a>
+    <h2>Создание ингредиента</h2>
 
     {{ form_start(form) }}
 
-    <div>
-        {{ form_label(form.name, 'Название ингредиента') }}
-        {{ form_widget(form.name) }}
-        {{ form_errors(form.name) }}
+    <div class="row">
+        <div class="col-xs-3"><label>Название ингредиента</label></div>
+        <div class="col-xs-5">{{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}</div>
+        <div class="col-xs-5 col-xs-offset-3 text-danger">{{ form_errors(form.name) }}</div>
     </div>
-    <div>
-        {{ form_widget(form.submit, {'attr': {'class': 'btn btn-primary btn-large form-control' }, 'label': 'Сохранить'}) }}
+    <br>
+    <div class="row">
+        <div class="col-xs-offset-3 col-xs-5">{{ form_widget(form.submit, {'attr': {'class': 'btn btn-green' }, 'label': 'Сохранить'}) }}</div>
     </div>
 
     {{ form_end(form) }}

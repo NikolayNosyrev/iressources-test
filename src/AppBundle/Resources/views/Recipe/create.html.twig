@@ -10,39 +10,46 @@
 {% import _self as forms %}
 
 {% block content %}
-    <h1>Создание рецепта</h1>
-
-    <a href="{{ path('recipe_list') }}">Назад к списку</a>
+    <a href="{{ path('recipe_list') }}" class="pull-right">Назад к списку</a>
+    <br>
+    <h2>Создание рецепта</h2>
 
     {{ form_start(form) }}
 
     <div style="color: red;">{{ form_errors(form) }}</div>
 
-    <div>
-        {{ form_label(form.name, 'Название рецепта') }}
-        {{ form_widget(form.name) }}
-        {{ form_errors(form.name) }}
+    <div class="row">
+        <div class="col-xs-3"><label>Название рецепта</label></div>
+        <div class="col-xs-5">{{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}</div>
+        <div class="col-xs-5 col-xs-offset-3 text-danger">{{ form_errors(form.name) }}</div>
     </div>
-    <div>
-        {{ form_label(form.description, 'Описание рецепта') }}
-        {{ form_widget(form.description) }}
-        {{ form_errors(form.description) }}
+    <br>
+
+    <div class="row">
+        <div class="col-xs-3"><label>Описание рецепта</label></div>
+        <div class="col-xs-5">{{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}</div>
+        <div class="col-xs-5 col-xs-offset-3 text-danger">{{ form_errors(form.description) }}</div>
     </div>
 
-    <div>
-        Ингредиенты:
-        <ul id="ingredients-list" data-prototype="{{ forms.widget_prototype(form.ingredients.vars.prototype)|e }}">
-            {% for ingredient in form.ingredients %}
-                {{ forms.widget_prototype(ingredient) }}
-            {% endfor %}
-        </ul>
-        <a href="#" id="add-ingredient">Добавить ингредиент</a>
-        {{ form_widget(form.ingredients) }}
-        <br>
+    <br>
+
+    <div class="row">
+        <div class="col-xs-3"><label>Ингредиенты</label></div>
+        <div class="col-xs-5">
+            <ul id="ingredients-list" data-prototype="{{ forms.widget_prototype(form.ingredients.vars.prototype)|e }}">
+                {% for ingredient in form.ingredients %}
+                    {{ forms.widget_prototype(ingredient) }}
+                {% endfor %}
+            </ul>
+            <br>
+            <a href="#" id="add-ingredient">Добавить ингредиент</a>
+            {{ form_widget(form.ingredients) }}
+        </div>
     </div>
 
-    <div>
-        {{ form_widget(form.submit, {'attr': {'class': 'btn btn-primary btn-large form-control' }, 'label': 'Сохранить'}) }}
+    <br>
+    <div class="row">
+        <div class="col-xs-offset-3 col-xs-5">{{ form_widget(form.submit, {'attr': {'class': 'btn btn-green' }, 'label': 'Сохранить'}) }}</div>
     </div>
 
     {{ form_end(form) }}
