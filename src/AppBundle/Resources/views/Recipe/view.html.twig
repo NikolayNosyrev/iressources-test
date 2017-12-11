@@ -1,11 +1,23 @@
 {% extends "AppBundle::layout.html.twig" %}
 {% block content %}
-    <h1>Просмотр рецепта</h1>
+    <a href="{{ path('recipe_list') }}" class="pull-right">Назад к списку</a>
+    <br>
 
-    <a href="{{ path('recipe_list') }}">Назад к списку</a><br>
+    <h2>Просмотр рецепта</h2>
 
-    Название: {{ recipe.name }}<br>
-    Описание: {{ recipe.description }}<br>
-    Ингредиенты: {% for ingredient in recipe.ingredients %}{{ ingredient.name }}; {% endfor %}
+    <div class="row">
+        <div class="col-xs-3"><label>Название</label></div>
+        <div class="col-xs-5">{{ recipe.name }}</div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-3"><label>Описание</label></div>
+        <div class="col-xs-5">{{ recipe.description }}</div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-3"><label>Ингредиенты</label></div>
+        <div class="col-xs-5">{% for ingredient in recipe.ingredients %}{{ ingredient.name }}; {% endfor %}</div>
+    </div>
 
 {% endblock %}
