@@ -8,10 +8,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class CookbookController extends Controller
+class RecipeController extends Controller
 {
     /**
-     * @Route("/", name="list")
+     * @Route("/", name="recipe_list")
      */
     public function listAction(Request $request)
     {
@@ -20,7 +20,7 @@ class CookbookController extends Controller
         $recipes = $this->get('model.recipe')->findByString($search);
 
         return $this->render(
-            'AppBundle:Cookbook:list.html.twig',
+            'AppBundle:Recipe:list.html.twig',
             [
                 'recipes' => $recipes,
             ]
@@ -28,7 +28,7 @@ class CookbookController extends Controller
     }
 
     /**
-     * @Route("/view/{id}", name="view")
+     * @Route("/view/{id}", name="recipe_view")
      */
     public function viewAction($id)
     {
@@ -39,7 +39,7 @@ class CookbookController extends Controller
         }
 
         return $this->render(
-            'AppBundle:Cookbook:view.html.twig',
+            'AppBundle:Recipe:view.html.twig',
             [
                 'recipe' => $recipe
             ]
@@ -47,7 +47,7 @@ class CookbookController extends Controller
     }
 
     /**
-     * @Route("/create", name="create")
+     * @Route("/create", name="recipe_create")
      */
     public function createAction(Request $request)
     {
@@ -59,11 +59,11 @@ class CookbookController extends Controller
 
             $this->addFlash('message', 'Рецепт успешно добавлен');
 
-            return $this->redirectToRoute('list');
+            return $this->redirectToRoute('recipe_list');
         }
 
         return $this->render(
-            'AppBundle:Cookbook:create.html.twig',
+            'AppBundle:Recipe:create.html.twig',
             [
                 'form' => $form->createView()
             ]
@@ -71,7 +71,7 @@ class CookbookController extends Controller
     }
 
     /**
-     * @Route("/edit/{id}", name="edit")
+     * @Route("/edit/{id}", name="recipe_edit")
      */
     public function editAction($id, Request $request)
     {
@@ -89,11 +89,11 @@ class CookbookController extends Controller
 
             $this->addFlash('message', 'Рецепт успешно отредактирован');
 
-            return $this->redirectToRoute('list');
+            return $this->redirectToRoute('recipe_list');
         }
 
         return $this->render(
-            'AppBundle:Cookbook:create.html.twig',
+            'AppBundle:Recipe:create.html.twig',
             [
                 'form' => $form->createView()
             ]
@@ -101,7 +101,7 @@ class CookbookController extends Controller
     }
 
     /**
-     * @Route("/delete/{id}", name="delete")
+     * @Route("/delete/{id}", name="recipe_delete")
      */
     public function deleteAction($id)
     {
@@ -115,6 +115,6 @@ class CookbookController extends Controller
 
         $this->addFlash('message', 'Рецепт успешно удалён');
 
-        return $this->redirectToRoute('list');
+        return $this->redirectToRoute('recipe_list');
     }
 }
