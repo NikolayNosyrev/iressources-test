@@ -44,6 +44,7 @@ class Recipe
      *      )
      */
     protected $ingredients;
+
     /**
      * Constructor
      */

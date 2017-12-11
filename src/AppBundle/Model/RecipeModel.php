@@ -8,16 +8,18 @@ use Doctrine\ORM\EntityManager;
 class RecipeModel
 {
     private $em;
+
     private $recipeRepo;
 
     public function __construct(EntityManager $em)
     {
-        $this->em         = $em;
+        $this->em = $em;
         $this->recipeRepo = $em->getRepository(Recipe::class);
     }
 
     /**
      * @param $id
+     *
      * @return null|Recipe
      */
     public function findOneById($id)

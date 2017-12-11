@@ -15,8 +15,11 @@ class CookbookController extends Controller
     {
         $recipes = $this->get('model.recipe')->findAll();
 
-        return $this->render('AppBundle:Cookbook:list.html.twig', [
-            'recipes' => $recipes
-        ]);
+        return $this->render(
+            'AppBundle:Cookbook:list.html.twig',
+            [
+                'recipes' => $recipes,
+            ]
+        );
     }
 }
