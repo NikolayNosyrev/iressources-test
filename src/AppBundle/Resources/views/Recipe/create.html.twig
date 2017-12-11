@@ -30,7 +30,8 @@
             {% endfor %}
         </ul>
         <a href="#" id="add-ingredient">Добавить ингредиент</a>
-        <br><br>
+        {{ form_widget(form.ingredients) }}
+        <br>
     </div>
 
     <div>
