@@ -16,6 +16,7 @@
             <th>ID</th>
             <th>Название</th>
             <th>Описание</th>
+            <th>Ингридиенты</th>
             <th>Действия</th>
         </tr>
         </thead>
@@ -25,6 +26,11 @@
                 <td>{{ recipe.id }}</td>
                 <td>{{ recipe.name }}</td>
                 <td>{{ recipe.description }}</td>
+                <td>
+                    {% for ingredient in recipe.ingredients %}
+                        {{ ingredient.name }}
+                    {% endfor %}
+                </td>
                 <td>
                     <a href="{{ path('view', {id: recipe.id }) }}">Просмотреть</a>
                     <a href="{{ path('edit', {id: recipe.id }) }}">Редактировать</a>
