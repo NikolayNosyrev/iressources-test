@@ -28,6 +28,25 @@ class CookbookController extends Controller
     }
 
     /**
+     * @Route("/view/{id}", name="view")
+     */
+    public function viewAction($id, Request $request)
+    {
+        $recipe = $this->get('model.recipe')->findOneById($id);
+
+        if (is_null($recipe)) {
+            throw new NotFoundHttpException('Recipe not found.');
+        }
+
+        return $this->render(
+            'AppBundle:Cookbook:view.html.twig',
+            [
+                'recipe' => $recipe
+            ]
+        );
+    }
+
+    /**
      * @Route("/create", name="create")
      */
     public function createAction(Request $request)

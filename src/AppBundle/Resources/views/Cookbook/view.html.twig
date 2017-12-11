@@ -1,0 +1,10 @@
+{% extends "AppBundle::layout.html.twig" %}
+{% block content %}
+    <h1>Просмотр рецепта</h1>
+
+    <a href="{{ path('list') }}">Назад к списку</a><br>
+
+    Название: {{ recipe.name }}<br>
+    Описание: {{ recipe.description }}
+
+{% endblock %}
