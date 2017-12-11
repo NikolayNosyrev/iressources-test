@@ -1,0 +1,8 @@
+
+services:
+
+    model.recipe:
+        class: AppBundle\Model\RecipeModel
+        arguments:
+            - '@doctrine.orm.entity_manager'
+
