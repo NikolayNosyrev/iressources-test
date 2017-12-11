@@ -16,9 +16,47 @@
         {{ form_widget(form.description) }}
         {{ form_errors(form.description) }}
     </div>
+
+    <div>
+        Ингредиенты:
+        <ul id="ingredients-list" data-prototype="{{ form_widget(form.ingredients.vars.prototype)|e }}">
+            {% for ingredient in form.ingredients %}
+                <li>
+                    {{ form_errors(ingredient) }}
+                    {{ form_widget(ingredient) }}
+                </li>
+            {% endfor %}
+        </ul>
+        <a href="#" id="add-ingredient">Добавить ингредиент</a>
+        <br><br>
+    </div>
+
     <div>
         {{ form_widget(form.submit, {'attr': {'class': 'btn btn-primary btn-large form-control' }, 'label': 'Сохранить'}) }}
     </div>
+
     {{ form_end(form) }}
 
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript">
+        var count = '{{ form.ingredients|length }}';
+
+        $(document).ready(function() {
+            $('#add-ingredient').click(function(e) {
+                e.preventDefault();
+
+                var list = jQuery('#ingredients-list');
+
+                var newWidget = list.attr('data-prototype');
+
+                newWidget = newWidget.replace(/__name__/g, count);
+                count++;
+
+                var newLi = $('<li></li>').html(newWidget);
+                newLi.appendTo(list);
+            });
+        })
+    </script>
 {% endblock %}

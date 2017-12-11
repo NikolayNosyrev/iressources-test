@@ -1,6 +1,6 @@
 {% extends "AppBundle::layout.html.twig" %}
 {% block content %}
-    <h1>Создание рецепта</h1>
+    <h1>Создание ингредиента</h1>
 
     <a href="{{ path('ingredient_list') }}">Назад к списку</a>
 
@@ -14,6 +14,7 @@
     <div>
         {{ form_widget(form.submit, {'attr': {'class': 'btn btn-primary btn-large form-control' }, 'label': 'Сохранить'}) }}
     </div>
+
     {{ form_end(form) }}
 
 {% endblock %}
