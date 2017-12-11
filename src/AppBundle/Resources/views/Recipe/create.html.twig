@@ -6,6 +6,8 @@
 
     {{ form_start(form) }}
 
+    <div style="color: red;">{{ form_errors(form) }}</div>
+
     <div>
         {{ form_label(form.name, 'Название рецепта') }}
         {{ form_widget(form.name) }}

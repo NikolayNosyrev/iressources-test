@@ -10,6 +10,9 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormError;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
@@ -23,7 +26,7 @@ class RecipeForm extends AbstractType
                 TextType::class,
                 [
                     'required'    => false,
-                    'constraints' => new NotBlank()
+                    'constraints' => new NotBlank(),
                 ]
             )
             ->add(
@@ -31,7 +34,7 @@ class RecipeForm extends AbstractType
                 TextareaType::class,
                 [
                     'required'    => false,
-                    'constraints' => new NotBlank()
+                    'constraints' => new NotBlank(),
                 ]
             )
             ->add(
@@ -40,25 +43,50 @@ class RecipeForm extends AbstractType
                 [
                     'entry_type'    => EntityType::class,
                     'entry_options' => [
-                        'class' => 'AppBundle:Ingredient',
-                        'choice_label' => 'name'
+                        'class'        => 'AppBundle:Ingredient',
+                        'choice_label' => 'name',
                     ],
                     'allow_add'     => true,
                     'required'      => false,
-                    'constraints'   => new NotBlank()
+                    'constraints'   => new NotBlank(),
                 ]
             )
             ->add(
                 'submit',
                 SubmitType::class
+            )
+            ->addEventListener(
+                FormEvents::POST_SUBMIT,
+                function (FormEvent $event) {
+                    $form = $event->getForm();
+
+                    $ingredients = $form->getData()->getIngredients();
+
+                    $existIds = [];
+
+                    foreach ($ingredients as $ingredient) {
+
+                        if (in_array($ingredient->getId(), $existIds)) {
+                            $form->addError(new FormError('Ингредиенты не должны повторятся'));
+
+                            return false;
+                        }
+
+                        $existIds[] = $ingredient->getId();
+                    }
+
+                    return true;
+                }
             );
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => Recipe::class,
-        ));
+        $resolver->setDefaults(
+            [
+                'data_class' => Recipe::class,
+            ]
+        );
     }
 
     public function getName()
