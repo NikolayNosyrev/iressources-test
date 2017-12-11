@@ -11,6 +11,9 @@ class RecipeModel
 
     private $recipeRepo;
 
+    /**
+     * @param EntityManager $em
+     */
     public function __construct(EntityManager $em)
     {
         $this->em = $em;
@@ -33,5 +36,38 @@ class RecipeModel
     public function findAll()
     {
         return $this->recipeRepo->findAll();
+    }
+
+    /**
+     * @param Recipe $recipe
+     *
+     * @throws \Exception
+     */
+    public function create(Recipe $recipe)
+    {
+        $this->em->persist($recipe);
+        $this->em->flush();
+    }
+
+    /**
+     * @param Recipe $recipe
+     *
+     * @throws \Exception
+     */
+    public function update(Recipe $recipe)
+    {
+        $this->em->persist($recipe);
+        $this->em->flush();
+    }
+
+    /**
+     * @param Recipe $recipe
+     *
+     * @throws \Exception
+     */
+    public function delete(Recipe $recipe)
+    {
+        $this->em->remove($recipe);
+        $this->em->flush();
     }
 }
